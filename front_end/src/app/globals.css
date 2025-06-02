@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5f7fa;
+  --text: #eee;
+  --text2: #b4c3da;
+  --div: #f8f9fa;
+  --divHover: #e9ecef;
+  --foreground: #171717;
+  --primary: #4a6fa5;
+  --secondary: #5c7eae;
+  --darkPrimary: #2c4b7a;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  margin: auto auto;
+}
