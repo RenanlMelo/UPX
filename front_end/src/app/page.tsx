@@ -9,7 +9,7 @@ export default function Home() {
   const [aba, setAba] = useState("geral");
   return (
     <>
-      <Header setAba={setAba} />
+      <Header aba={aba} setAba={setAba} />
       {aba === "geral" && <Geral />}
       {aba === "sobre" && <Sobre />}
       {aba === "gerenciamento" && <Gerenciamento />}

@@ -2,10 +2,11 @@ import { House, Info, ListCheck, Settings } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 type HeaderProps = {
+  aba: string;
   setAba: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const Header = ({ setAba }: HeaderProps) => {
+export const Header = ({ aba, setAba }: HeaderProps) => {
   const [uptimeSeconds, setUptimeSeconds] = useState(2140_720); // Exemplo: 2 dias, 4h, 12min => 2*86400 + 4*3600 + 12*60 = 192720 seg
 
   useEffect(() => {
@@ -43,31 +44,30 @@ export const Header = ({ setAba }: HeaderProps) => {
           Uptime: {formatUptime(uptimeSeconds)}
         </p>
       </div>
-      <div className="bg-[var(--darkPrimary)] grid md:grid-cols-4">
+      <div className="bg-[var(--darkPrimary)] grid md:grid-cols-3">
         <p
           onClick={() => setAba("geral")}
-          className="flex items-center justify-center hover:bg-[var(--primary)] w-fit h-full py-4 place-self-center px-4 duration-300 cursor-pointer select-none"
+          className={`flex items-center justify-center ${
+            aba == "geral" ? "bg-[var(--primary)]" : ""
+          } hover:bg-[var(--primary)] w-fit h-full py-4 place-self-center px-4 duration-300 cursor-pointer select-none`}
         >
           <House size={20} className="mr-1" />
           Geral
         </p>
         <p
           onClick={() => setAba("gerenciamento")}
-          className="flex items-center justify-center hover:bg-[var(--primary)] w-fit h-full py-4 place-self-center px-4 duration-300 cursor-pointer select-none"
+          className={`flex items-center justify-center ${
+            aba == "gerenciamento" ? "bg-[var(--primary)]" : ""
+          } hover:bg-[var(--primary)] w-fit h-full py-4 place-self-center px-4 duration-300 cursor-pointer select-none`}
         >
           <ListCheck size={20} className="mr-1" />
           Gerenciamento
         </p>
         <p
-          onClick={() => setAba("geral")}
-          className="flex items-center justify-center hover:bg-[var(--primary)] w-fit h-full py-4 place-self-center px-4 duration-300 cursor-pointer select-none"
-        >
-          <Settings size={20} className="mr-1" />
-          Configurações
-        </p>
-        <p
           onClick={() => setAba("sobre")}
-          className="flex items-center justify-center hover:bg-[var(--primary)] w-fit h-full py-4 place-self-center px-4 duration-300 cursor-pointer select-none"
+          className={`flex items-center justify-center ${
+            aba == "sobre" ? "bg-[var(--primary)]" : ""
+          } hover:bg-[var(--primary)] w-fit h-full py-4 place-self-center px-4 duration-300 cursor-pointer select-none`}
         >
           <Info size={20} className="mr-1" />
           Sobre

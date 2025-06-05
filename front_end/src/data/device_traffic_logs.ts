@@ -12,6 +12,8 @@ export interface deviceTrafficLog {
   RouterIP: string;
   //Protocols
   ProtocolName: string;
+  //Departments
+  DepartmentName: string;
 }
 
 export const deviceTrafficLogHeaders: Partial<

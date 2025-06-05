@@ -6,7 +6,7 @@ import {
   getDeviceTrafficLogs,
   getTotalLogs,
 } from "../data/device_traffic_logs";
-import { ChevronDown, ListCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronDown, ListCheck } from "lucide-react";
 
 type SortKey = keyof deviceTrafficLog;
 
@@ -160,7 +160,10 @@ export default function Gerenciamento() {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-200 text-left">
+        <table
+          id="tabela_gerenciamento"
+          className="min-w-full border border-gray-200 text-left"
+        >
           <thead className="bg-[var(--primary)] text-white">
             <tr className="grid grid-cols-4">
               {Object.entries(deviceTrafficLogHeaders).map(([key, label]) => (
@@ -200,15 +203,18 @@ export default function Gerenciamento() {
                     <td colSpan={4} className="p-4 bg-gray-100">
                       <p className="font-semibold mb-2">Detalhes:</p>
                       <div className="flex flex-col text-sm">
-                        <p>
-                          <strong>Descrição:</strong> {d.Description}
-                        </p>
-                        <p>
-                          <strong>Protocolo:</strong> {d.ProtocolName}
-                        </p>
-                        <p>
-                          <strong>IP do Roteador:</strong> {d.RouterIP}
-                        </p>
+                        <div>
+                          <strong>Descrição </strong>
+                          <p id="descricao">{d.Description}</p>
+                        </div>
+                        <div>
+                          <strong>Protocolo</strong>
+                          <p id="protocolo">{d.ProtocolName}</p>
+                        </div>
+                        <div>
+                          <strong>Departamento</strong>
+                          <p id="departamento">{d.DepartmentName}</p>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -223,10 +229,11 @@ export default function Gerenciamento() {
         {currentPage > 1 && (
           <>
             <button
-              onClick={() => setCurrentPage(1)}
-              className="px-3 py-2 bg-gray-100 rounded hover:bg-gray-200"
+              id="previous_page"
+              onClick={() => setCurrentPage(currentPage - 1)}
+              className="p-2 bg-gray-100 rounded hover:bg-gray-200"
             >
-              Primeira
+              <ArrowLeft size={20} />
             </button>
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
@@ -248,10 +255,11 @@ export default function Gerenciamento() {
               {currentPage + 1}
             </button>
             <button
-              onClick={() => setCurrentPage(totalPages)}
-              className="px-3 py-2 bg-gray-100 rounded hover:bg-gray-200"
+              id="next_page"
+              onClick={() => setCurrentPage(currentPage + 1)}
+              className="p-2 bg-gray-100 rounded hover:bg-gray-200"
             >
-              Última
+              <ArrowRight size={20} />
             </button>
           </>
         )}
